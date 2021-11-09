@@ -1,0 +1,23 @@
+{% extends "paginas/base.html" %}
+{% load static %}
+
+{% block titulo %}
+<title>Produtos</title>
+{% endblock %}
+
+{% block conteudo %}
+<div class="container-fluid bg-dark text-center text-white">
+    <h2>Produtos</h2>
+    <hr>
+        
+    <ul style="list-style-type: none;">
+        {% for produto in object_list %}
+            <a href="{% url 'produto-detail' produto.slug produto.id %}" style="color: white;"><li>{{ produto.nome }}</li></a>
+            <li>{{ produto.marca }}</li>
+            <li>{{ produto.categoria }}</li>
+            <img src="{{ produto.imagem.url }}" alt="Foto do Produto {{ produto.nome }}" width="200px"> 
+            <br><br>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

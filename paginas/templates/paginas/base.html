@@ -3,8 +3,6 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--Importando o bootstrap-->
     <!-- Latest compiled and minified CSS -->
@@ -17,7 +15,7 @@
     <script src="../../static/imagens/logo.jfif"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
 
-    {% block titulo%}
+    {% block titulo %}
         <title>Modelo</title>
     {% endblock %}
 
@@ -35,7 +33,7 @@
                     <a class="nav-link" href="{% url 'sobre' %}">Sobre nós</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Produto</a>
+                    <a class="nav-link" href="{% url 'produto-list' %}">Produto</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Serviço</a>
@@ -66,7 +64,7 @@
     <hr>
 
 
-    {% block conteudo%}
+    {% block conteudo %}
     {% endblock %}
 
     {% block rodape %}
@@ -89,7 +87,7 @@
         </div>
     </div>
     <div class="footer-copyright text-center bg-warning text-white py-5 ">© 2020 Copyright:
-        <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+        <!-- <a href="https://mdbootstrap.com/"> MDBootstrap.com</a> -->
     </div>
     {% endblock %}
     
