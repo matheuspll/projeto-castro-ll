@@ -1,0 +1,17 @@
+{% extends "paginas/base.html" %}
+{% load static %}
+
+{% block titulo %}
+<title>Postagem {{ post.titulo }}</title>
+{% endblock %}
+
+{% block conteudo %}
+<div class="container-fluid bg-dark text-center text-white">
+    <h2>{{ post.titulo }}</h2>
+    <p class="date">
+        Publicado em {{ post.criacao|date:"d M Y" }} por {{ post.autor }}
+    </p>
+    <p>{{ post.conteudo|safe|linebreaks }}</p>
+</div>
+{% endblock %}
+
