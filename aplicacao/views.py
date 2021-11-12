@@ -16,9 +16,11 @@ class ProdutoCreateView(CreateView):
 
         context['tituloP']= "cadastro de Produto"
         context['icone_titulo'] = '<i class="far fa-clipboard" aria-hidden="true"></i>'
+
         context['titulo'] = "Cadastro de Produto"
         context['icon']= '<i class="fa fa-check" aria-hidden="true"></i>'
         context['cadastrar'] = 'Cadastrar'
+
 
         return context
 
