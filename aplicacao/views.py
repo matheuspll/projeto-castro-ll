@@ -14,11 +14,12 @@ class ProdutoCreateView(CreateView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
-        context['tituloP']= "cadastro de Produto"
+        context['tituloP']= "Cadastro de Produto"
         context['iconetitulo'] = '<i class="far fa-clipboard" aria-hidden="true"></i>'
         context['titulo'] = "Cadastro de Produto"
         context['icon']= '<i class="fa fa-check" aria-hidden="true"></i>'
         context['cadastrar'] = 'Cadastrar'
+
 
         return context
 
