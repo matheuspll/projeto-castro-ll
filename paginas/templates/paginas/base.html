@@ -3,8 +3,6 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--Importando o bootstrap-->
     <!-- Latest compiled and minified CSS -->
@@ -17,7 +15,7 @@
     <script src="../../static/imagens/logo.jfif"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
 
-    {% block titulo%}
+    {% block titulo %}
         <title>Modelo</title>
     {% endblock %}
 
@@ -25,7 +23,7 @@
 
 <body>    
     {% block navbar %}
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-sm bg-warning navbar-dark">
         <div class="container-fluid justify-content-center">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -35,13 +33,13 @@
                     <a class="nav-link" href="{% url 'sobre' %}">Sobre nós</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Produto</a>
+                    <a class="nav-link" href="{% url 'produto-list' %}">Produto</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Serviço</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Blog</a>
+                    <a class="nav-link" href="{% url 'blog:list' %}">Blog</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Loja</a>
@@ -57,39 +55,20 @@
     </nav>
     {% endblock %}
 
-    {% block banner %}
-    <div>
-        <img class="img-fluid float-end" src="{% static 'img/banner-topo.png'%}" width="100%" height="200px"
-            alt="banner-topo">
-    </div>
-    {% endblock %}
-    <hr>
+    
 
-
-    {% block conteudo%}
+    {% block conteudo %}
     {% endblock %}
 
     {% block rodape %}
-    <div class="container-fluid bg-warning text-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 py-3 my-2">
-                    <div class="mb-1 text-center ">
-                        <div class="icon-bar">
-                            <a href="#"><i class="bi bi-instagram icon-cog text-white fa-2x fa-fw "></i></a>
-                            <a href="#"><i class="bi bi-linkedin icon-cog text-white fa-2x fa-fw "></i></a>
-                            <a href="#"><i class="bi bi-whatsapp icon-cog text-white fa-2x "></i></a>
-                            <a href="#"><i class="bi bi-twitter icon-cog text-white fa-2x"></i></a>
-                            <a href="#"><i class="bi bi-facebook icon-cog text-white fa-2x"></i></a>
-                        </div>
-                    </div>
-                </div>              
-            </div>
-
-        </div>
-    </div>
-    <div class="footer-copyright text-center bg-warning text-white py-5 ">© 2020 Copyright:
-        <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+   
+    <div class="footer-copyright text-center bg-warning text-white py-5 ">© 2020 Copyright: Castro autopeças |
+        <a href="#"><i class="bi bi-instagram icon-cog text-white fa-1x fa-fw "></i></a>
+        <a href="#"><i class="bi bi-linkedin icon-cog text-white fa-1x fa-fw "></i></a>
+        <a href="#"><i class="bi bi-whatsapp icon-cog text-white fa-1x "></i></a>
+        <a href="#"><i class="bi bi-twitter icon-cog text-white fa-1x"></i></a>
+        <a href="#"><i class="bi bi-facebook icon-cog text-white fa-1x"></i></a>
+        <!-- <a href="https://mdbootstrap.com/"> MDBootstrap.com</a> -->
     </div>
     {% endblock %}
     

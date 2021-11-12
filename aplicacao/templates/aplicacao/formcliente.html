@@ -1,0 +1,27 @@
+{% extends 'paginas/base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags%}
+
+{% block titulo %}
+<title>{{tituloP}}</title>
+{% endblock %}
+
+{% block conteudo %}
+<div class="container p-3 my-3 border border-warning">
+    <h1 class="text-warning">{% autoescape off %} {{iconetitulo}} {{titulo}}{% endautoescape %}</h1>
+    <p class="lead">Preencha todos os campos obrigatórios</p>
+    <hr>
+
+    <form action="" method="POST">
+        {% csrf_token%}
+
+        {{ form|crispy }}
+
+        <br>
+        <br>
+
+        <button type="submit" class="btn btn-primary mt-3">{% autoescape off %}{{icon}} {{cadastrar}} {% endautoescape%}</button>
+    </form>
+</div>
+{% endblock%}

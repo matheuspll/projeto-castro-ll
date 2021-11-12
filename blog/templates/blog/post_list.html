@@ -1,0 +1,24 @@
+{% extends "paginas/base.html" %}
+{% load static %}
+
+{% block titulo %}
+<title>Blog Castro</title>
+{% endblock %}
+
+{% block conteudo %}
+<div class="container-fluid bg-dark text-center text-white">        
+    {% for post in post_list %}
+        <article>
+            <h2>
+                <a href="{{ post.get_absolute_url }}">
+                    {{ post.titulo }}
+                </a>
+            </h2>
+            <p class="date">
+                publicado em {{ post.criacao|date:"d M Y" }} por {{ post.autor }}
+            </p>
+            {{ post.conteudo|safe|linebreaks|truncatewords:30 }}
+        </article>
+    {% endfor %}
+</div>
+{% endblock %}

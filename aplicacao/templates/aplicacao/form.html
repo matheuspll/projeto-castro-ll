@@ -1,0 +1,18 @@
+{% extends "paginas/base.html" %}
+{% load static %}
+
+{% block titulo %}<title>Formulário cadastrar-atualizar</title>{% endblock %}
+
+{% block conteudo %}
+<div class="container-fluid bg-dark text-center text-white">
+    <h2>Cadastrar Produtos</h2>
+    <hr>
+    <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
+        {% csrf_token %}        
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+{% endblock %}
+
