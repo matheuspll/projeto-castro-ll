@@ -12,17 +12,17 @@
         {% for produto in object_list %}
         <div class= col-md-4>
             <div class="card my-5 text-justify-center" style="width: 18rem" >
-                    <h5 class="card-header bg-warning text-white">{{produto.categoria}}</h5>
-                    <img src="{{ produto.imagem.url }}" alt="Foto do Produto {{ produto.nome }}" width="100%" >
-                    <div class="card-body">
-                        <h5 class="card-title"><a href="{% url 'produto-detail' produto.slug produto.id %}" style="color: black;">{{ produto.nome }}</a></h5>
-                        
-                        <p class="card-text mt-3">Marca: {{ produto.marca }}</p>
-                        <p class="card-text">Categoria:{{ produto.categoria }}</p>
-                        <p class="card-text">Descrição:{{produto.descricao}}</p>
-                        <p class="card-text">Preço: R$ {{produto.preco}}</p>
-                        <a href="{% url 'produto-detail' produto.slug produto.id %}" class="btn btn-warning text-white">Detalhes</a>
-                    </div>
+                <h5 class="card-header bg-warning text-white">{{produto.categoria}}</h5>
+                <img src="{{ produto.imagem.url }}" alt="Foto do Produto {{ produto.nome }}" width="100%" >
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'produto-detail' produto.slug produto.id %}" style="color: black;">{{ produto.nome }}</a></h5>
+                    
+                    <p class="card-text mt-3">Marca: {{ produto.marca }}</p>
+                    <p class="card-text">Categoria:{{ produto.categoria }}</p>
+                    <p class="card-text">Descrição:{{produto.descricao}}</p>
+                    <p class="card-text">Preço: R$ {{produto.preco}}</p>
+                    <a href="{% url 'produto-detail' produto.slug produto.id %}" class="btn btn-warning text-white">Detalhes</a>
+                </div>
             </div>
         </div>
         {% endfor %}
