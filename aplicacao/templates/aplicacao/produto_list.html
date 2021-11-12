@@ -6,18 +6,26 @@
 {% endblock %}
 
 {% block conteudo %}
-<div class="container-fluid bg-dark text-center text-white">
-    <h2>Produtos</h2>
-    <hr>
-        
-    <ul style="list-style-type: none;">
+
+<div class="container">
+    <div class="row">
         {% for produto in object_list %}
-            <a href="{% url 'produto-detail' produto.slug produto.id %}" style="color: white;"><li>{{ produto.nome }}</li></a>
-            <li>{{ produto.marca }}</li>
-            <li>{{ produto.categoria }}</li>
-            <img src="{{ produto.imagem.url }}" alt="Foto do Produto {{ produto.nome }}" width="200px"> 
-            <br><br>
+        <div class= col-md-4>
+            <div class="card my-5 text-justify-center" style="width: 18rem" >
+                        <h5 class="card-header bg-warning text-white">{{produto.categoria}}</h5>
+                        <img src="{{ produto.imagem.url }}" alt="Foto do Produto {{ produto.nome }}" width="100%" >
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{% url 'produto-detail' produto.slug produto.id %}" style="color: black;">{{ produto.nome }}</a></h5>
+                            
+                            <p class="card-text mt-3">Marca: {{ produto.marca }}</p>
+                            <p class="card-text">Categoria:{{ produto.categoria }}</p>
+                            <p class="card-text">Descrição:{{produto.descricao}}</p>
+                            <p class="card-text">Preço: R$ {{produto.preco}}</p>
+                            <a href="{% url 'produto-detail' produto.slug produto.id %}" class="btn btn-warning text-white">Detalhes</a>
+                        </div>
+            </div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 </div>
 {% endblock %}
