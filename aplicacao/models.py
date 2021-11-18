@@ -6,7 +6,7 @@ from django.template.defaultfilters import slugify
 
 
 
-class Pessoa (models.Model):
+class Pessoa(models.Model):
     comercial = "C"
     fixo = "F"
     pessoal = "P"
@@ -15,16 +15,16 @@ class Pessoa (models.Model):
         (fixo, "Fixo"),
         (pessoal, "Pessoal")
     ]
-    nome = models.CharField(max_length=200,verbose_name='Nome Pessoa')
+    nome = models.CharField(max_length=200, verbose_name='Nome Pessoa')
     email =models.EmailField(max_length=200, verbose_name='E-mail')
-    tipo = models.CharField(max_length=1, choices=TIPO_CHOICES, default=pessoal,verbose_name='Tipo de telefone')
-    telefone = models.CharField(max_length=15,verbose_name='Telefone')
-    rua = models.CharField(max_length=200, null=True,blank=False,verbose_name='Telefone')
-    numero = models.IntegerField(null=True, blank=False,verbose_name='Número')
-    complemento = models.CharField(max_length=200,null=True,blank=False,verbose_name='Complemento')
-    bairro = models.CharField(max_length=50,null=True,blank=False,verbose_name='Bairro')
-    cidade = models.CharField(max_length=100,null=True,blank=False,verbose_name='Cidade')
-    estado = models.CharField(max_length=50,null=True,blank=False,verbose_name='Estado')
+    tipo = models.CharField(max_length=1, choices=TIPO_CHOICES, default=pessoal, verbose_name='Tipo de telefone')
+    telefone = models.CharField(max_length=15, verbose_name='Telefone')
+    numero = models.IntegerField(null=True, blank=False, verbose_name='Número')
+    rua = models.CharField(max_length=200, null=True, blank=False, verbose_name='Rua')
+    complemento = models.CharField(max_length=200, null=True, blank=False, verbose_name='Complemento')
+    bairro = models.CharField(max_length=50, null=True, blank=False, verbose_name='Bairro')
+    cidade = models.CharField(max_length=100, null=True, blank=False, verbose_name='Cidade')
+    estado = models.CharField(max_length=50, null=True, blank=False, verbose_name='Estado')
       
     class Meta:
         abstract = True
@@ -35,19 +35,19 @@ class Pessoa (models.Model):
 
 class PessoaJuridica(Pessoa):
     razao_social = models.CharField(max_length=200,verbose_name='Razão Social')
-    cnpj = models.CharField(max_length=15,unique=True,verbose_name='CNPJ')
+    cnpj = models.CharField(max_length=18,unique=True,verbose_name='CNPJ')
     
 
     class meta:
-        ordering= ['razao_social']
+        ordering = ['razao_social']
 
 
 class PessoaFisica(Pessoa): 
-    sobre= models.CharField(max_length=200, verbose_name='Sobrenome')
-    cpf =models.CharField(max_length=14, unique=True,verbose_name='CPF')
+    sobre = models.CharField(max_length=200, verbose_name='Sobrenome')
+    cpf = models.CharField(max_length=14, unique=True,verbose_name='CPF')
     
     class meta:
-        ordering= ['razao_social']
+        ordering = ['razao_social']
 
 
 

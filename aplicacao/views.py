@@ -14,8 +14,9 @@ class ProdutoCreateView(CreateView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
-        context['tituloP']= "Cadastro de Produto"
-        context['iconetitulo'] = '<i class="far fa-clipboard" aria-hidden="true"></i>'
+        context['tituloP']= "cadastro de Produto"
+        context['icone_titulo'] = '<i class="far fa-clipboard" aria-hidden="true"></i>'
+
         context['titulo'] = "Cadastro de Produto"
         context['icon']= '<i class="fa fa-check" aria-hidden="true"></i>'
         context['cadastrar'] = 'Cadastrar'
@@ -82,11 +83,6 @@ class PessoaFisicaUpdate(UpdateView):
         return context
 
 
-     
-
-
-
-
 
 #---------------------- Criar cliente Pessoa Juridica ---------------------------
 
@@ -101,8 +97,8 @@ class PessoaJuridicaCreate(CreateView):
 
         context['iconetitulo'] = '<i class="fas fa-building" aria-hidden="true"></i>'
         context['titulo'] = "Cadastro de Cliente Pessoa Juridica"
-        context['icon']= '<i class="fa fa-check" aria-hidden="true"></i>'
-        context['cadastrar']='cadastrar'
+        context['icon'] = '<i class="fa fa-check" aria-hidden="true"></i>'
+        context['cadastrar'] = 'cadastrar'
 
         return context
 
@@ -119,7 +115,7 @@ class PessoaJuridicaUpdate(UpdateView):
         context['iconetitulo'] = '<i class="fas fa-building" aria-hidden="true"></i>'
         context['titulo'] = "Cadastro de Cliente Pessoa Juridica"
         context['icon']= '<i class="fa fa-check" aria-hidden="true"></i>'
-        context['cadastrar']='atualizar'
+        context['cadastrar'] = 'atualizar'
 
         return context 
 
