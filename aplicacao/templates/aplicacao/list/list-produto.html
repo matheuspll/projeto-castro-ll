@@ -1,0 +1,67 @@
+{% extends 'paginas/base.html' %}
+{% load static %}
+
+{% block navbar %}
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}| Lista de produtos {% endblock title %}
+
+{% block conteudo %}
+<div class="container py-2 my-5 border border-warning">
+    <h3>Lista de Produtos registrados</h3>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col text-left">
+                <a href="{% url 'cadastrar-produto' %}" class="btn btn-primary" title="adicionar">Adicionar<i class="fa fa-file"></i> </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container p-3 my-3 ">
+        <div class="table-responsive border">
+            <table class="table table-striped">
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Marca</th>
+                    <th>Preço</th>
+                    <th>Estoque</th>
+                    <th>Imagem</th>
+                    <th>Categoria</th>
+                    <th>Opções</th>
+                </tr>
+
+                {% for produto in object_list %}
+                <tr>
+                    <td>{{produto.nome}}</td>
+                    <td>{{ produto.descricao}}</td>
+                    <td>{{ produto.marca}}</td>
+                    <td>R${{ produto.preco}}</td>
+                    <td>{{ produto.estoque}}</td>
+                    <td>{{ produto.imagem}}</td>
+                    <td>{{ produto.categoria}}</td>
+                    <td>
+                        <a href="{% url 'produto-update' produto.pk %}" class="btn btn-warning btn-sm" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+                        <a href="{% url 'deletar-produto' produto.pk %}" class="btn btn-danger btn-sm" title="excluir"><i class="fa fa-trash-o"></i></a>                    
+                    </td>
+                </tr>
+
+                
+                <tr>
+                    <td colspan="3">Nenhum Produto registrado!</td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block rodape %}
+{% endblock %}

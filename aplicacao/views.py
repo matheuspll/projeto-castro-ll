@@ -4,18 +4,19 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import PessoaFisica, PessoaJuridica, Produto
 
 
-# ----------------- Cadastrar Produtos ----------------- #
+# ----------------- Viwes Produtos ----------------- #
+
 class ProdutoCreateView(CreateView):
     model = Produto
     fields = ['nome', 'descricao', 'marca', 'preco', 'estoque', 'imagem', 'categoria']
     template_name = 'aplicacao/formcliente.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('listagem-produto')
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
         context['tituloP']= "Cadastro de Produto"
-        context['iconetitulo'] = '<i class="far fa-clipboard" aria-hidden="true"></i>'
+        context['iconetitulo'] = '<i class="" aria-hidden="true"></i>'
         context['titulo'] = "Cadastro de Produto"
         context['icon']= '<i class="fa fa-check" aria-hidden="true"></i>'
         context['cadastrar'] = 'Cadastrar'
@@ -25,27 +26,60 @@ class ProdutoCreateView(CreateView):
 
 
 
-# ----------------- Listar Produtos ----------------- #
+class ProdutoDeleteView(DeleteView):
+    model = Produto
+    template_name = 'aplicacao/delete.html'
+    success_url = reverse_lazy('listagem-produto')
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+
+        context['iconetitulo'] = '<i class="fa fa-exclamation" aria-hidden="true"></i>'
+        context['titulo'] = "Cadastro de Cliente Pessoa Juridica"
+        context['icon'] = '<i class="fa fa-check" aria-hidden="true"></i>'
+        context['botao'] = 'excluir'
+
+        return context
+
+    
 class ProdutoListView(ListView):
     model = Produto
+    template_name = 'aplicacao/produto_list.html'
 
+
+
+class ProdutoListagemListView(ListView):
+    model = Produto
+    template_name = 'aplicacao/list/list-produto.html'
+
+    
 
 class ProdutoDetailView(DetailView):
     model = Produto
+    
 
 
-# ----------------- Atualizar Produtos ----------------- #
 class ProdutoUpdateView(UpdateView):
     model = Produto
     fields = ['nome', 'descricao', 'marca', 'preco', 'estoque', 'imagem', 'categoria']
     template_name = 'aplicacao/form.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('listagem-produto')
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+
+        context['iconetitulo'] = '<i class="fa fa-group" aria-hidden="true"></i>'
+        context['titulo'] = "Atualizar Produto"
+        context['icon'] = '<i class="fa fa-check" aria-hidden="true"></i>'
+        context['cadastrar'] = 'Atualizar'
+
+        return context
+
+    
 
 
 
-
-
-#-----------------   criar Cliente Pessoa Fisica ------------------------
+#-----------------   Views Pessoa Fisica ------------------------
 
 class PessoaFisicaCreate(CreateView):
     model = PessoaFisica
@@ -82,13 +116,29 @@ class PessoaFisicaUpdate(UpdateView):
         return context
 
 
-     
+class PessoaFisicaDelete(DeleteView):
+    model = PessoaFisica
+    template_name = 'aplicacao/delete.html'
+    success_url = reverse_lazy('indexadmin')
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+
+        context['titulo'] = "Excluir Pessoa Fisica"
+        context['icon'] = '<i class="fa fa-check" aria-hidden="true"></i>'
+        context['icon2'] = '<i class = "fa fa-reply" aria-hidden = "true" > </i >'
+        context['botao'] = 'Excluir'
+
+        return context
+
+
+class PessoaFisicaListagemListView(ListView):
+    model = PessoaFisica
+    template_name = 'aplicacao/list/list-cliente.html'
 
 
 
-
-
-#---------------------- Criar cliente Pessoa Juridica ---------------------------
+#---------------------- Views Pessoa Juridica ---------------------------
 
 class PessoaJuridicaCreate(CreateView):
     model = PessoaJuridica
@@ -99,7 +149,7 @@ class PessoaJuridicaCreate(CreateView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
-        context['iconetitulo'] = '<i class="fas fa-building" aria-hidden="true"></i>'
+        context['iconetitulo'] = '<i class="fa fa-industry" aria-hidden="true"></i>'
         context['titulo'] = "Cadastro de Cliente Pessoa Juridica"
         context['icon']= '<i class="fa fa-check" aria-hidden="true"></i>'
         context['cadastrar']='cadastrar'
@@ -124,3 +174,17 @@ class PessoaJuridicaUpdate(UpdateView):
         return context 
 
     
+class PessoaJuridicaDelete(DeleteView):
+    model = PessoaJuridica
+    template_name = 'aplicacao/delete.html'
+    success_url = reverse_lazy('indexadmin')
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+
+        context['titulo'] = "Excluir Pessoa Juridica"
+        context['icon'] = '<i class="fa fa-check" aria-hidden="true"></i>'
+        context['icon2'] = '<i class = "fa fa-reply" aria-hidden = "true" > </i >'
+        context['botao'] = 'Excluir'
+
+        return context

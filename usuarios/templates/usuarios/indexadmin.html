@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link para os Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="../../static/imagens/logo.jfif"></script>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .icon-bar {
+            float: left;
+            margin: 0px;
+            width: 140px;
+            background-color: #555;
+        }
+
+        .icon-bar a {
+            display: block;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 40px;
+        }
+
+        .icon-bar a#titulo  {
+            font-size: 15px;
+        }
+
+        .icon-bar a:hover {
+            background-color: #000;
+        }
+
+        .active {
+            background-color:coral;
+        }
+    </style>
+
+    <title>Principal</title>
+</head>
+
+<body>
+    <div class="bg-imagem">
+
+        <div class="icon-bar">
+            <a class="active" href="#"><i class="fa fa-home" id="titulo"></i></a>
+            <a href="{% url 'listagem-pessoa-fisica' %}"><abbr title="Cliente Pessoa Física"><i class="fa fa-male"></i></abbr></a>
+            <a href="{% url 'pessoa-juridica-cadastro' %}"><abbr title="Cliente Pessoa Juridica"><i class="fa fa-building"></i></abbr></a>
+            <a href="{% url 'listagem-produto' %}"><abbr title='Produtos'><i class="fa fa-cubes"></i></abbr></a>
+            <a href="#"><abbr title="Blog noticias"><i class="fa fa-comments"></i></abbr></a>
+            <a href="#"><i class="fa fa-address-book"></i></a>
+        </div>
+
+        <div class="container border border-warning my-5 py-5">
+            <h2 class="text-center text-warning">Principal -Sistemas Administrativo</h2>
+            <div class="contanier text-warning text-center">
+                <img src="{% static 'img/fundo.png' %}" alt="logo" width="100%" height="400">
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

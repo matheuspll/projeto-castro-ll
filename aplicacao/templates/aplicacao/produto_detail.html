@@ -6,19 +6,45 @@
 {% endblock %}
 
 {% block conteudo %}
-<div class="container-fluid bg-dark text-center text-white">
-    <h2>Produto</h2>
-    <hr>        
-    <ul style="list-style-type: none">    
-        <li>{{ produto.nome }}</li>
-        <li>{{ produto.descricao }}</li>
-        <li>{{ produto.marca }}</li>
-        <li>{{ produto.preco }}</li>
-        <li>{{ produto.estoque }}</li>
-        <li>{{ produto.categoria }}</li>
-        <img src="{{ produto.imagem.url }}" alt="Foto do Produto {{ produto.nome }}">
-        <br>
-    </ul>
+<div class=" container text-justify-center" style="margin-left: 450px;">
+    <div class="card py my-5 text-justify-center" style="width: 50rem;">
+        <h2 class="text-center bg-success text-white">Detalhes do Produto</h2>
+        <img class="card-img-top" src="{{ produto.imagem.url}}" alt="Foto do Produto {{produto.nome}}">
+        <div class="card-body">
+            <h5 class="card-title">{{produto.nome}}</h5>
+            <p class="card-text">{{produto.descricao}} Some quick example text to build on the card title and make up the
+                bulk of the card's
+                content.</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Marca</strong> {{produto.marca}}</li>
+            <li class="list-group-item"><strong>Preço:</strong> {{produto.preco}}</li>
+            <li class="list-group-item"><strong>Estoque:</strong> {{produto.estoque}}</li>
+            <li class="list-group-item"><strong>Categoria:</strong> {{produto.categoria}}</li>
+        </ul>
+        <div class="card-body bg-success text-center my-1">
+            <h3 href="#" class="card-link text-white">{{produto.categoria}}</h3>
+        </div>
+    </div>
 </div>
 {% endblock %}
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{ produto.imagem.url}}" alt="Foto do Produto {{produto.nome}}">
+    <div class="card-body">
+        <h5 class="card-title">{{produto.nome}}</h5>
+        <p class="card-text">{{produto.descricao}} Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Marca: {{produto.marca}}</li>
+        <li class="list-group-item">Preço: {{produto.preco}}</li>
+        <li class="list-group-item">Estoque: {{produto.estoque}}</li>
+        <li class="list-group-item">Estoque: {{produto.categoria}}</li>
+    </ul>
+    <div class="card-body">
+        <a href="#" class="card-link bg-success">Lista</a>
+        <a href="#" class="card-link">Inicio</a>
+    </div>
+</div>
 
