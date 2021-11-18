@@ -15,8 +15,14 @@ class ProdutoCreateView(CreateView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
+<<<<<<< HEAD
         context['tituloP']= "Cadastro de Produto"
         context['iconetitulo'] = '<i class="" aria-hidden="true"></i>'
+=======
+        context['tituloP']= "cadastro de Produto"
+        context['icone_titulo'] = '<i class="far fa-clipboard" aria-hidden="true"></i>'
+
+>>>>>>> acb92eac76623f4fbacf11122bf4e06c8fb8d6e2
         context['titulo'] = "Cadastro de Produto"
         context['icon']= '<i class="fa fa-check" aria-hidden="true"></i>'
         context['cadastrar'] = 'Cadastrar'
@@ -116,6 +122,7 @@ class PessoaFisicaUpdate(UpdateView):
         return context
 
 
+<<<<<<< HEAD
 class PessoaFisicaDelete(DeleteView):
     model = PessoaFisica
     template_name = 'aplicacao/delete.html'
@@ -135,6 +142,8 @@ class PessoaFisicaDelete(DeleteView):
 class PessoaFisicaListagemListView(ListView):
     model = PessoaFisica
     template_name = 'aplicacao/list/list-cliente.html'
+=======
+>>>>>>> acb92eac76623f4fbacf11122bf4e06c8fb8d6e2
 
 
 
@@ -151,8 +160,8 @@ class PessoaJuridicaCreate(CreateView):
 
         context['iconetitulo'] = '<i class="fa fa-industry" aria-hidden="true"></i>'
         context['titulo'] = "Cadastro de Cliente Pessoa Juridica"
-        context['icon']= '<i class="fa fa-check" aria-hidden="true"></i>'
-        context['cadastrar']='cadastrar'
+        context['icon'] = '<i class="fa fa-check" aria-hidden="true"></i>'
+        context['cadastrar'] = 'cadastrar'
 
         return context
 
@@ -169,7 +178,7 @@ class PessoaJuridicaUpdate(UpdateView):
         context['iconetitulo'] = '<i class="fas fa-building" aria-hidden="true"></i>'
         context['titulo'] = "Cadastro de Cliente Pessoa Juridica"
         context['icon']= '<i class="fa fa-check" aria-hidden="true"></i>'
-        context['cadastrar']='atualizar'
+        context['cadastrar'] = 'atualizar'
 
         return context 
 
