@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block titulo %}
-<title>Produtos</title>
+    <title>Produtos</title>
 {% endblock %}
 
 {% block conteudo %}
@@ -18,10 +18,17 @@
                     <h5 class="card-title"><a href="{% url 'produto-detail' produto.slug produto.id %}" style="color: black;">{{ produto.nome }}</a></h5>
                     
                     <p class="card-text mt-3">Marca: {{ produto.marca }}</p>
+<<<<<<< HEAD
+                    <p class="card-text">Categoria:{{ produto.categoria }}</p>
+                    <p class="card-text">Descrição:{{produto.descricao}}</p>
+                    <p class="card-text">Preço: R$ {{produto.preco}}</p>
+                    <a href="{% url 'produto-detail' produto.slug produto.id %}" class="btn btn-success text-white">Detalhes</a>
+=======
                     <p class="card-text">Categoria: {{ produto.categoria }}</p>
                     <p class="card-text">Descrição: {{ produto.descricao }}</p>
                     <p class="card-text">Preço: R$ {{ produto.preco }}</p>
                     <a href="{% url 'produto-detail' produto.slug produto.id %}" class="btn btn-warning text-white">Detalhes</a>
+>>>>>>> acb92eac76623f4fbacf11122bf4e06c8fb8d6e2
                 </div>
             </div>
         </div>

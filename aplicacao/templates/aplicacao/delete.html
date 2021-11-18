@@ -1,0 +1,35 @@
+{% extends 'paginas/base.html'%}
+{% load static %}
+
+{% block navbar %}
+{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block title %} Excluir Material {% endblock title %}
+
+{% block conteudo %}
+<div class="container p-3 my-3 border border-warning">
+    <h1>{{titulo}}</h1>
+    <p class="lead">Atenção <i class="fa fa-exclamation"></i>Analise com atenção antes de excluir o dado
+        definitivamente</p>
+    <hr>
+
+    <form action="" method="POST">
+        <p>
+            Deseja realmente exluir o <strong>{{ object}}</strong>?
+        </p>
+        <p style="text-align: center;">
+            <i class="fa fa-trash-o" style="font-size: 60px;color: red;"></i>
+        </p>
+        {% csrf_token%}
+
+        {{ form| crispy}}
+
+        <button type="submit" class="btn btn-danger mt-3">{% autoescape off %}{{icon}} {{botao}} {%endautoescape%}</button>
+        <a href="{% url 'indexadmin'%}" class="btn btn-success mt-3">{% autoescape off %}{{icon2}} {% endautoescape %}Voltar</a>
+    </form>
+</div>
+{% endblock %}
+
+{% block rodape %}
+{% endblock %}

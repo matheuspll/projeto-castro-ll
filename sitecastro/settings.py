@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'paginas.apps.PaginasConfig',
     'aplicacao.apps.AplicacaoConfig',
+    'usuarios.apps.UsuariosConfig',
     'blog.apps.BlogConfig',
     'ckeditor',
     'ckeditor_uploader',
@@ -135,6 +136,15 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+
+#configuração de autenticação
+
+LOGIN_REDIRECT_URL = 'indexadmin'
+
+LOGOUT_REDIRECT_URL = 'login'
+
+LOGIN_URL = 'login'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

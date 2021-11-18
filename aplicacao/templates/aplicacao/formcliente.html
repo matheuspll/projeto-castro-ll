@@ -1,6 +1,8 @@
 {% extends 'paginas/base.html' %}
 {% load static %}
 
+{% block navbar %}
+{% endblock %}
 {% load crispy_forms_tags%}
 
 {% block titulo %}
@@ -24,10 +26,16 @@
         <button type="submit" class="btn btn-primary mt-3">{% autoescape off %}{{icon}} {{cadastrar}} {% endautoescape%}</button>
     </form>
 </div>
+<<<<<<< HEAD
+{% endblock%}
+
+{% block rodape %}
+=======
 {% endblock %}
 
 {% block scripts %}
 <script src="{% static 'js/jquery.mask.min.js' %}"></script>
 
 <script src="{% static 'js/mask.js' %}"></script>
+>>>>>>> acb92eac76623f4fbacf11122bf4e06c8fb8d6e2
 {% endblock %}

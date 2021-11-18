@@ -1,0 +1,81 @@
+{% extends 'paginas/base.html' %}
+{% load static %}
+
+{% block navbar %}
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}| Listagem Cliente {% endblock title %}
+
+{% block conteudo %}
+<div class="container py-2 my-5 border border-warning">
+    <h3>Lista de Clientes Físicos registrados</h3>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col text-left">
+                <a href="{% url 'pessoa-fisica-cadastro' %}" class="btn btn-primary" title="adicionar">Adicionar
+                    <i class="fa fa-file"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container p-3 my-3 ">
+        <div class="table-responsive border">
+            <table class="table table-striped">
+                <tr>
+                    <th>Nome</th>
+                    <th>Sobre</th>
+                    <th>Complemento</th>
+                    <th>E-mail</th>
+                    <th>Tipo</th>
+                    <th>Telefone</th>
+                    <th>Rua</th>
+                    <th>Numero</th>
+                    <th>Complemento</th>
+                    <th>Bairro</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th>Opções</th>
+                </tr>
+
+                {% for pessoa in object_list %}
+                <tr>
+                    <td>{{pessoa.nome}}</td>
+                    <td>{{pessoa.sobre}}</td>
+                    <td>{{pessoa.cpf}}</td>
+                    <td>{{pessoa.email}}</td>
+                    <td>{{pessoa.tipo}}</td>
+                    <td>{{pessoa.telefone}}</td>
+                    <td>{{pessoa.rua}}</td>
+                    <td>{{pessoa.numero}}</td>
+                    <td>{{pessoa.complemento}}</td>
+                    <td>{{pessoa.bairro}}</td>
+                    <td>{{pessoa.cidade}}</td>
+                    <td>{{pessoa.estado}}</td>
+                    <td>
+                        <a href="{% url 'pessoa-fisica-atualizar' pessoa.pk %}" class="btn btn-warning btn-sm" title="Editar"><i
+                                class="fa fa-pencil" aria-hidden="true"></i></a>
+
+                        <a href="{% url 'pessoa-fisica-deletar' pessoa.pk %}" class="btn btn-danger btn-sm"
+                            title="excluir"><i class="fa fa-trash-o"></i></a>
+                    </td>
+                </tr>
+
+                {% empty %}
+                <tr>
+                    <td colspan="3">Nenhum cliente Pessoa física registrado!</td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block rodape %}
+{% endblock %}
