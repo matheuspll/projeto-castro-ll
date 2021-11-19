@@ -14,7 +14,7 @@ class Categoria(models.Model):
 class Post(models.Model):
     titulo = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
-    conteudo = RichTextUploadingField()
+    conteudo = RichTextUploadingField(null=True)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     criacao = models.DateTimeField(auto_now_add=True)
     atualizacao = models.DateTimeField(auto_now=True)
