@@ -1,0 +1,11 @@
+{% extends "paginas/base.html" %}
+{% load static %}
+
+{% block conteudo %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary mt-3">cadastrar</button>
+</form>
+{% endblock %}
