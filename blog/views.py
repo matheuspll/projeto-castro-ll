@@ -1,9 +1,14 @@
+from django.views.generic.edit import CreateView
 from django.views.generic import ListView, DetailView
+<<<<<<< HEAD
 from django.views.generic import CreateView, UpdateView,DeleteView
+=======
+>>>>>>> d50a31ce57f52e3a48de04e8897db2e4fe9a40af
 from django.urls import reverse_lazy
 from .models import Post
 
 
+<<<<<<< HEAD
 
 class PostCreateView(CreateView):
     model = Post
@@ -24,6 +29,13 @@ class PostCreateView(CreateView):
 
 
 
+=======
+class PostCreateView(CreateView):
+    model = Post
+    template_name = 'blog/post_cadastrar.html'
+    fields = '__all__'
+    success_url = reverse_lazy('home')
+>>>>>>> d50a31ce57f52e3a48de04e8897db2e4fe9a40af
 
 
 class PostListView(ListView):

@@ -14,9 +14,14 @@ class ProdutoCreateView(CreateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+<<<<<<< HEAD
 
         context['tituloP']= "cadastro de Produto"
         context['icone_titulo'] = '<i class="far fa-clipboard" aria-hidden="true"></i>'
+=======
+        context['tituloP']= "Cadastro de Produto"
+        context['iconetitulo'] = '<i class="" aria-hidden="true"></i>'
+>>>>>>> d50a31ce57f52e3a48de04e8897db2e4fe9a40af
         context['titulo'] = "Cadastro de Produto"
         context['icon']= '<i class="fa fa-check" aria-hidden="true"></i>'
         context['cadastrar'] = 'Cadastrar'
@@ -115,6 +120,10 @@ class PessoaFisicaUpdate(UpdateView):
 
         return context
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d50a31ce57f52e3a48de04e8897db2e4fe9a40af
 class PessoaFisicaDelete(DeleteView):
     model = PessoaFisica
     template_name = 'aplicacao/delete.html'
@@ -134,6 +143,10 @@ class PessoaFisicaDelete(DeleteView):
 class PessoaFisicaListagemListView(ListView):
     model = PessoaFisica
     template_name = 'aplicacao/list/list-cliente.html'
+<<<<<<< HEAD
+=======
+
+>>>>>>> d50a31ce57f52e3a48de04e8897db2e4fe9a40af
 
 
 
