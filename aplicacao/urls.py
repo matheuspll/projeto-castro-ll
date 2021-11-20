@@ -3,7 +3,7 @@ from django.urls import path
 from .views import PessoaFisicaDelete, PessoaFisicaListagemListView, PessoaFisicaUpdate, PessoaJuridicaCreate, PessoaJuridicaDelete,PessoaJuridicaUpdate, ProdutoDeleteView, ProdutoListagemListView    
 from .views import ProdutoCreateView, ProdutoUpdateView, ProdutoListView, ProdutoDetailView
 
-from .views import PessoaFisicaCreate, ProdutoListagemListView, PessoaFisicaListagemListView
+from .views import PessoaFisicaCreate, ProdutoListagemListView, PessoaFisicaListagemListView, PessoaJuridicaListagemListView
 
 urlpatterns = [
     path('cadastrar/produto/', ProdutoCreateView.as_view(), name='cadastrar-produto'),
@@ -12,8 +12,10 @@ urlpatterns = [
     path('editar/produto/<int:pk>/', ProdutoUpdateView.as_view(), name='produto-update'),
     path('deletar/produto/<int:pk>/', ProdutoDeleteView.as_view(), name='deletar-produto'),
 
+    path('listagem/pessoa-juridica/', PessoaJuridicaListagemListView.as_view(),name='listagem-pessoa-juridica'),
     path('listagem/produtos/', ProdutoListagemListView.as_view(), name='listagem-produto'),
     path('listagem/pessoa-fisica/', PessoaFisicaListagemListView.as_view(), name='listagem-pessoa-fisica'),
+
 
 
     path('cadastrar/pessoa-fisica/', PessoaFisicaCreate.as_view(), name='pessoa-fisica-cadastro'),
@@ -24,5 +26,6 @@ urlpatterns = [
 
     path('deletar/pessoa-fisica/<int:pk>/', PessoaFisicaDelete.as_view(), name='pessoa-fisica-deletar'),
     path('deletar/pessoa-juridica/<int:pk>/', PessoaJuridicaDelete.as_view(), name='pessoa-juridica-deletar'),
+
 
 ]

@@ -3,10 +3,18 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import PessoaFisica, PessoaJuridica, Produto
 
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from braces.views import GroupRequiredMixin
+from django.shortcuts import HttpResponseRedirect
+from django.http import request
+from django.shortcuts import render, redirect
 # ----------------- Viwes Produtos ----------------- #
 
-class ProdutoCreateView(CreateView):
+
+
+class ProdutoCreateView(LoginRequiredMixin,GroupRequiredMixin,CreateView):
+    group_required = u"administradores"
+    login_url = 'login'
     model = Produto
     fields = ['nome', 'descricao', 'marca', 'preco', 'estoque', 'imagem', 'categoria']
     template_name = 'aplicacao/formcliente.html'
@@ -22,10 +30,16 @@ class ProdutoCreateView(CreateView):
 
 
         return context
+    
+    def dispatch(self, *args, **kwargs):
+        # Check if user is authenticated
+        if self.request.user.is_authenticated:
+            return render(self.request, 'usuarios/login.html')
 
+    
 
-
-class ProdutoDeleteView(DeleteView):
+class ProdutoDeleteView(LoginRequiredMixin,GroupRequiredMixin,DeleteView):
+    group_required = u"administradores"
     model = Produto
     template_name = 'aplicacao/delete.html'
     success_url = reverse_lazy('listagem-produto')
@@ -39,6 +53,8 @@ class ProdutoDeleteView(DeleteView):
         context['botao'] = 'excluir'
 
         return context
+    
+
 
     
 class ProdutoListView(ListView):
@@ -47,7 +63,7 @@ class ProdutoListView(ListView):
 
 
 
-class ProdutoListagemListView(ListView):
+class ProdutoListagemListView(LoginRequiredMixin,ListView):
     model = Produto
     template_name = 'aplicacao/list/list-produto.html'
 
@@ -58,7 +74,8 @@ class ProdutoDetailView(DetailView):
     
 
 
-class ProdutoUpdateView(UpdateView):
+class ProdutoUpdateView(LoginRequiredMixin,GroupRequiredMixin,UpdateView):
+    group_required = u"administradores"
     model = Produto
     fields = ['nome', 'descricao', 'marca', 'preco', 'estoque', 'imagem', 'categoria']
     template_name = 'aplicacao/form.html'
@@ -98,7 +115,8 @@ class PessoaFisicaCreate(CreateView):
 
 
 
-class PessoaFisicaUpdate(UpdateView):
+class PessoaFisicaUpdate(LoginRequiredMixin,GroupRequiredMixin,UpdateView):
+     group_required = u"administradores"
      model = PessoaFisica
      fields= ['nome','cpf','tipo','telefone','email','rua','numero','complemento','bairro','cidade','estado']
      template_name = 'aplicacao/formcliente.html'
@@ -114,8 +132,8 @@ class PessoaFisicaUpdate(UpdateView):
 
         return context
 
-
-class PessoaFisicaDelete(DeleteView):
+class PessoaFisicaDelete(LoginRequiredMixin, GroupRequiredMixin, DeleteView):
+    group_required = u"administradores"
     model = PessoaFisica
     template_name = 'aplicacao/delete.html'
     success_url = reverse_lazy('indexadmin')
@@ -131,11 +149,9 @@ class PessoaFisicaDelete(DeleteView):
         return context
 
 
-class PessoaFisicaListagemListView(ListView):
+class PessoaFisicaListagemListView(LoginRequiredMixin,ListView):
     model = PessoaFisica
     template_name = 'aplicacao/list/list-cliente.html'
-
-
 
 
 #---------------------- Views Pessoa Juridica ---------------------------
@@ -157,7 +173,8 @@ class PessoaJuridicaCreate(CreateView):
         return context
 
 
-class PessoaJuridicaUpdate(UpdateView):
+class PessoaJuridicaUpdate(LoginRequiredMixin, GroupRequiredMixin,UpdateView):
+    group_required = u"administradores"
     model = PessoaJuridica
     fields = ['nome','razao_social','cnpj','tipo','telefone','email','rua','numero','complemento','bairro','cidade','estado']
     template_name = 'aplicacao/formcliente.html'
@@ -174,7 +191,8 @@ class PessoaJuridicaUpdate(UpdateView):
         return context 
 
     
-class PessoaJuridicaDelete(DeleteView):
+class PessoaJuridicaDelete(LoginRequiredMixin,GroupRequiredMixin,DeleteView):
+    group_required = u"administradores"
     model = PessoaJuridica
     template_name = 'aplicacao/delete.html'
     success_url = reverse_lazy('indexadmin')
@@ -188,3 +206,7 @@ class PessoaJuridicaDelete(DeleteView):
         context['botao'] = 'Excluir'
 
         return context
+
+class PessoaJuridicaListagemListView(LoginRequiredMixin,ListView):
+    model = PessoaJuridica
+    template_name = 'aplicacao/list/list-juridico.html'
