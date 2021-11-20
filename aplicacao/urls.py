@@ -27,4 +27,5 @@ urlpatterns = [
     path('deletar/pessoa-fisica/<int:pk>/', PessoaFisicaDelete.as_view(), name='pessoa-fisica-deletar'),
     path('deletar/pessoa-juridica/<int:pk>/', PessoaJuridicaDelete.as_view(), name='pessoa-juridica-deletar'),
 
+
 ]

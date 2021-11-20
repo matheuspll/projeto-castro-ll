@@ -1,11 +1,35 @@
 {% extends "paginas/base.html" %}
+{% block navbar %}
+{% endblock %}
+
 {% load static %}
+{% load crispy_forms_tags%}
+
+{% block titulo %}
+    <title>{{ tituloP}}</title>
+{% endblock %}
 
 {% block conteudo %}
-<form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.media }}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary mt-3">cadastrar</button>
-</form>
+<div class="container p-3 my-3 border-warning">
+    <h1 class="text-warning">{% autoescape off %} {{ icone_titulo }} {{ titulo }}{% endautoescape %}</h1>
+    <p class="lead">Preencha todos os campos obrigatórios</p>
+    <hr>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form| crispy }}
+        <button type="submit" class="btn btn-primary mt-3">{% autoescape off %}{{icon}} {{cadastrar}} {%endautoescape%}</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block rodape %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
+<script src="{% static 'js/mask.js' %}"></script>
+
 {% endblock %}

@@ -7,7 +7,7 @@ urlpatterns = [
         template_name = 'usuarios/login.html'
     ), name='login'),
     path('logout/', auth_views.LogoutView.as_view(),name='logout'),
-    path('registrar/',UsuarioCreate.as_view(), name='registrar'),
+    path('registrar/',UsuarioCreate.as_view(), name='registrar-usuarios'),
     path('atualizar-dados/', PerfilUpdate.as_view(), name='atualizar-dados'),
     path('portal/', IndexAdmin.as_view(), name='indexadmin'),    
 ]
