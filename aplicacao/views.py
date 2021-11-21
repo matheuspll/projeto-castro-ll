@@ -1,17 +1,17 @@
+from django.http.response import Http404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import PessoaFisica, PessoaJuridica, Produto
+from django.core.exceptions import PermissionDenied
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import GroupRequiredMixin
-from django.shortcuts import HttpResponseRedirect
-from django.http import request
 from django.shortcuts import render, redirect
+
+
+
 # ----------------- Viwes Produtos ----------------- #
-
-
-
 class ProdutoCreateView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     group_required = [u'administradores']
     login_url = 'login'
@@ -31,9 +31,11 @@ class ProdutoCreateView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
         return context
 
 
-    # def dispatch(self, *args, **kwargs):
-    #     if self.request.user.is_authenticated:
-    #         pass
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated and not self.request.user.is_superuser:
+            raise PermissionDenied()
+        return super().dispatch(*args, **kwargs)
+
 
 
 
