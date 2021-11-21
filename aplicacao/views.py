@@ -1,19 +1,27 @@
-from django.http.response import Http404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import PessoaFisica, PessoaJuridica, Produto
 from django.core.exceptions import PermissionDenied
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import GroupRequiredMixin
-from django.shortcuts import render, redirect
 
 
 
-# ----------------- Viwes Produtos ----------------- #
-class ProdutoCreateView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
-    group_required = [u'administradores']
+# -------------------- mixin customizado --------------------- #
+class CustomGroupRequiredMixin():
+    group_required = None
+    
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated and not ( 
+            self.request.user.is_superuser):                               
+            raise PermissionDenied
+        return super().dispatch(request, *args, **kwargs)   
+
+
+# ----------------- Views Produtos ----------------- #
+class ProdutoCreateView(CustomGroupRequiredMixin, LoginRequiredMixin, CreateView):
+    group_required = u'administradores'
     login_url = 'login'
     model = Produto
     fields = ['nome', 'descricao', 'marca', 'preco', 'estoque', 'imagem', 'categoria']
@@ -31,21 +39,13 @@ class ProdutoCreateView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
         return context
 
 
-    def dispatch(self, request, *args, **kwargs):
-        if self.request.user.is_authenticated and not self.request.user.is_superuser:
-            raise PermissionDenied()
-        return super().dispatch(*args, **kwargs)
-
-
-
-
 # Portal
 class ProdutoListagemListView(LoginRequiredMixin, ListView):
     model = Produto
     template_name = 'aplicacao/list/list-produto.html'
     
     
-class ProdutoDeleteView(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
+class ProdutoDeleteView(CustomGroupRequiredMixin, LoginRequiredMixin, DeleteView):
     group_required = u"administradores"
     model = Produto
     template_name = 'aplicacao/delete.html'
@@ -62,7 +62,7 @@ class ProdutoDeleteView(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
         return context
 
 
-class ProdutoUpdateView(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+class ProdutoUpdateView(CustomGroupRequiredMixin, LoginRequiredMixin, UpdateView):
     group_required = u"administradores"
     model = Produto
     fields = ['nome', 'descricao', 'marca', 'preco', 'estoque', 'imagem', 'categoria']
@@ -94,7 +94,7 @@ class ProdutoDetailView(DetailView):
 
 
 
-#-----------------   Views Pessoa Fisica ------------------------
+#-----------------   Views Pessoa Fisica ------------------------#
 
 class PessoaFisicaCreate(CreateView):
     model = PessoaFisica
