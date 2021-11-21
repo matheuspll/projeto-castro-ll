@@ -2,20 +2,19 @@ from django.views.generic.edit import CreateView
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Post
-
+from django.template.defaultfilters import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_list_or_404
 from braces.views import GroupRequiredMixin 
 
 
 
-class PostCreateView(LoginRequiredMixin,CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     group_required = u"administradores"
     model = Post
     template_name = 'blog/post_cadastrar.html'
-    fields = '__all__'
+    fields = ['titulo', 'conteudo', 'autor', 'categoria']
     success_url = reverse_lazy('home')
-
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -24,17 +23,19 @@ class PostCreateView(LoginRequiredMixin,CreateView):
         context['titulo'] = "Postagem do Blog"
         context['icon']= '<i class="fa fa-check" aria-hidden="true"></i>'
         context['cadastrar'] = 'Postar'
-
-
         return context
 
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.slug = slugify(post.titulo)
+        post.save()
+        return super().form_valid(form)
 
 
-
-class PostUpdateView(LoginRequiredMixin,GroupRequiredMixin,UpdateView):
+class PostUpdateView(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     group_required = u"administradores"
     model = Post
-    fields = '__all__'
+    fields = ['titulo', 'conteudo', 'autor', 'categoria']
     template_name = 'blog/post_cadastrar.html'
     success_url = reverse_lazy('home')
 
@@ -45,12 +46,16 @@ class PostUpdateView(LoginRequiredMixin,GroupRequiredMixin,UpdateView):
         context['titulo'] = "Atualizar Post "
         context['icon'] = '<i class="fa fa-check" aria-hidden="true"></i>'
         context['cadastrar'] = 'Atualizar'
-
         return context
 
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.slug = slugify(self.object.titulo)
+        self.object.save()
+        return super().form_valid(form)
 
 
-class PostDeleteView(LoginRequiredMixin,GroupRequiredMixin,DeleteView):
+class PostDeleteView(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     group_required = u"administradores"
     model = Post
     template_name = 'aplicacao/delete.html'

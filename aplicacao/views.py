@@ -7,7 +7,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import GroupRequiredMixin
 
 
-
 # -------------------- mixin customizado --------------------- #
 class CustomGroupRequiredMixin():
     group_required = None
