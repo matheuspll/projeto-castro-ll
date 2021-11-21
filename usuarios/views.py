@@ -3,7 +3,7 @@ from django.views.generic.edit import CreateView,UpdateView
 
 from django.contrib.auth.models import User,Group
 from django.views.generic import TemplateView
-
+from braces.views import GroupRequiredMixin
 from django.contrib.auth.models import User
 from .forms import UsuarioForm
 from django.urls import reverse_lazy
@@ -12,12 +12,13 @@ from django.shortcuts import get_object_or_404
 from .models import Perfil
 
 
-class IndexAdmin (TemplateView):
+class IndexAdmin(TemplateView):
     template_name = 'usuarios/indexadmin.html'
 
 
 
-class UsuarioCreate(CreateView):
+class UsuarioCreate(GroupRequiredMixin, CreateView):
+    group_required = u'administradores'
     template_name = 'aplicacao/form.html'
     form_class = UsuarioForm
     success_url = reverse_lazy('indexadmin')

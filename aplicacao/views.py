@@ -12,8 +12,8 @@ from django.shortcuts import render, redirect
 
 
 
-class ProdutoCreateView(LoginRequiredMixin,GroupRequiredMixin,CreateView):
-    group_required = u"administradores"
+class ProdutoCreateView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
+    group_required = [u'administradores']
     login_url = 'login'
     model = Produto
     fields = ['nome', 'descricao', 'marca', 'preco', 'estoque', 'imagem', 'categoria']
@@ -22,23 +22,28 @@ class ProdutoCreateView(LoginRequiredMixin,GroupRequiredMixin,CreateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['tituloP']= "Cadastro de Produto"
+        context['tituloP'] = "Cadastro de Produto"
         context['iconetitulo'] = '<i class="" aria-hidden="true"></i>'
         context['titulo'] = "Cadastro de Produto"
-        context['icon']= '<i class="fa fa-check" aria-hidden="true"></i>'
+        context['icon'] = '<i class="fa fa-check" aria-hidden="true"></i>'
         context['cadastrar'] = 'Cadastrar'
 
-
         return context
-    
-    def dispatch(self, *args, **kwargs):
-        # Check if user is authenticated
-        if self.request.user.is_authenticated:
-            return render(self.request, 'usuarios/login.html')
 
-    
 
-class ProdutoDeleteView(LoginRequiredMixin,GroupRequiredMixin,DeleteView):
+    # def dispatch(self, *args, **kwargs):
+    #     if self.request.user.is_authenticated:
+    #         pass
+
+
+
+# Portal
+class ProdutoListagemListView(LoginRequiredMixin, ListView):
+    model = Produto
+    template_name = 'aplicacao/list/list-produto.html'
+    
+    
+class ProdutoDeleteView(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     group_required = u"administradores"
     model = Produto
     template_name = 'aplicacao/delete.html'
@@ -53,28 +58,9 @@ class ProdutoDeleteView(LoginRequiredMixin,GroupRequiredMixin,DeleteView):
         context['botao'] = 'excluir'
 
         return context
-    
 
 
-    
-class ProdutoListView(ListView):
-    model = Produto
-    template_name = 'aplicacao/produto_list.html'
-
-
-
-class ProdutoListagemListView(LoginRequiredMixin,ListView):
-    model = Produto
-    template_name = 'aplicacao/list/list-produto.html'
-
-    
-
-class ProdutoDetailView(DetailView):
-    model = Produto
-    
-
-
-class ProdutoUpdateView(LoginRequiredMixin,GroupRequiredMixin,UpdateView):
+class ProdutoUpdateView(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     group_required = u"administradores"
     model = Produto
     fields = ['nome', 'descricao', 'marca', 'preco', 'estoque', 'imagem', 'categoria']
@@ -91,6 +77,17 @@ class ProdutoUpdateView(LoginRequiredMixin,GroupRequiredMixin,UpdateView):
 
         return context
 
+
+class ProdutoListView(ListView):
+    model = Produto
+    template_name = 'aplicacao/produto_list.html'
+
+
+class ProdutoDetailView(DetailView):
+    model = Produto
+    
+
+
     
 
 
@@ -103,13 +100,14 @@ class PessoaFisicaCreate(CreateView):
     template_name = 'aplicacao/formcliente.html'
     success_url = reverse_lazy('home')
 
+
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
         context['iconetitulo'] = '<i class="fa fa-group" aria-hidden="true"></i>'
         context['titulo'] = "Cadastro de Cliente Pessoa Física"
-        context['icon']= '<i class="fa fa-check" aria-hidden="true"></i>'
-        context['cadastrar']='cadastrar'
+        context['icon'] = '<i class="fa fa-check" aria-hidden="true"></i>'
+        context['cadastrar'] ='Cadastrar'
 
         return context
 

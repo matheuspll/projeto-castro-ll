@@ -1,7 +1,7 @@
 {% extends 'paginas/base.html' %}
 {% load static %}
 
-{% load crispy_forms_tags%}
+{% load crispy_forms_tags %}
 
 {% block navbar %}
 {% endblock %}
@@ -21,7 +21,7 @@
                 <p class="lead">Informe seus dados para acessar o sistema</p>
                 <hr>
                 <form action="" method="POST">
-                    {% csrf_token%}
+                    {% csrf_token %}
 
                     {{ form|crispy }}
 

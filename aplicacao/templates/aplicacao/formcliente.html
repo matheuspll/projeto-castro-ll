@@ -11,7 +11,7 @@
 
 {% block conteudo %}
 <div class="container p-3 my-3 border border-warning">
-    <h1 class="text-warning">{% autoescape off %} {{ icone_titulo }} {{ titulo }}{% endautoescape %}</h1>
+    <h1 class="text-warning">{% autoescape off %} {{ iconetitulo }} {{ titulo }}{% endautoescape %}</h1>
     <p class="lead">Preencha todos os campos obrigatórios</p>
     <hr>
 
@@ -26,7 +26,6 @@
         <button type="submit" class="btn btn-primary mt-3">{% autoescape off %}{{icon}} {{cadastrar}} {% endautoescape%}</button>
     </form>
 </div>
-
 {% endblock %}
 
 {% block rodape %}
