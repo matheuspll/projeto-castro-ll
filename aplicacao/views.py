@@ -89,9 +89,6 @@ class ProdutoDetailView(DetailView):
     
 
 
-    
-
-
 
 #-----------------   Views Pessoa Fisica ------------------------#
 

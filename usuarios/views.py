@@ -68,7 +68,7 @@ class PerfilUpdate(UpdateView):
         context['iconetitulo'] = '<i class="fa fa-user" aria-hidden="true"></i>'
         context['titulo'] = "Cadastros de novos Usuários"
         context['icon']= '<i class="fa fa-check" aria-hidden="true"></i>'
-        context['cadastrar'] = 'Cadastrar'
+        context['cadastrar'] = 'Atualizar'
 
         return context
 
