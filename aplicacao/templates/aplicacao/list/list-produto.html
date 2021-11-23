@@ -41,7 +41,7 @@
                     <td>{{ produto.marca}}</td>
                     <td>R${{ produto.preco}}</td>
                     <td>{{ produto.estoque}}</td>
-                    <td>{{ produto.imagem}}</td>
+                    <td><a href="{{produto.imagem.url}}" >Ver</a></td>
                     <td>{{ produto.categoria}}</td>
                     <td>
                         <a href="{% url 'produto-update' produto.pk %}" class="btn btn-warning btn-sm" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
