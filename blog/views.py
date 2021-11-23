@@ -4,7 +4,6 @@ from django.urls import reverse_lazy
 from .models import Post
 from django.template.defaultfilters import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_list_or_404
 from braces.views import GroupRequiredMixin 
 
 
@@ -72,15 +71,10 @@ class PostDeleteView(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
         return context
 
 
-
-
-
 class PostListView(ListView):
     model = Post
 
     
-
-
 class PostDetailView(DetailView):
     model = Post
 

@@ -39,7 +39,7 @@ class ProdutoCreateView(CustomGroupRequiredMixin, LoginRequiredMixin, CreateView
 
 
 # Portal
-class ProdutoListagemListView(LoginRequiredMixin, ListView):
+class ProdutoListagemListView(CustomGroupRequiredMixin, LoginRequiredMixin, ListView):
     model = Produto
     template_name = 'aplicacao/list/list-produto.html'
     
@@ -88,8 +88,6 @@ class ProdutoDetailView(DetailView):
     model = Produto
     
 
-
-
 #-----------------   Views Pessoa Fisica ------------------------#
 
 class PessoaFisicaCreate(CreateView):
@@ -108,7 +106,6 @@ class PessoaFisicaCreate(CreateView):
         context['cadastrar'] ='Cadastrar'
 
         return context
-
 
 
 class PessoaFisicaUpdate(LoginRequiredMixin,GroupRequiredMixin,UpdateView):
@@ -202,6 +199,7 @@ class PessoaJuridicaDelete(LoginRequiredMixin,GroupRequiredMixin,DeleteView):
         context['botao'] = 'Excluir'
 
         return context
+
 
 class PessoaJuridicaListagemListView(LoginRequiredMixin,ListView):
     model = PessoaJuridica

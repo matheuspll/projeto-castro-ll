@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import PaginaInicial, PaginaSobre
+from .views import PaginaInicial
 from django.views.generic import RedirectView
 
 
