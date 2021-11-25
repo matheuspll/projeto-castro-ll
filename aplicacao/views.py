@@ -38,11 +38,11 @@ class ProdutoCreateView(CustomGroupRequiredMixin, LoginRequiredMixin, CreateView
         return context
 
 
-# Portal
+# -------------------- PORTAL --------------------- #
 class ProdutoListagemListView(CustomGroupRequiredMixin, LoginRequiredMixin, ListView):
     model = Produto
-    template_name = 'aplicacao/list/list-produto.html'
-    
+    template_name = 'aplicacao/list/list-produto.html'    
+
     
 class ProdutoDeleteView(CustomGroupRequiredMixin, LoginRequiredMixin, DeleteView):
     group_required = u"administradores"
@@ -54,7 +54,7 @@ class ProdutoDeleteView(CustomGroupRequiredMixin, LoginRequiredMixin, DeleteView
         context = super().get_context_data(*args, **kwargs)
 
         context['iconetitulo'] = '<i class="fa fa-exclamation" aria-hidden="true"></i>'
-        context['titulo'] = "Cadastro de Cliente Pessoa Juridica"
+        context['titulo'] = "Excluir Produto"
         context['icon'] = '<i class="fa fa-check" aria-hidden="true"></i>'
         context['botao'] = 'excluir'
 
@@ -204,3 +204,4 @@ class PessoaJuridicaDelete(LoginRequiredMixin,GroupRequiredMixin,DeleteView):
 class PessoaJuridicaListagemListView(LoginRequiredMixin,ListView):
     model = PessoaJuridica
     template_name = 'aplicacao/list/list-juridico.html'
+

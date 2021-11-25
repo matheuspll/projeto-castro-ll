@@ -4,8 +4,7 @@ from django.urls import reverse_lazy
 from .models import Post
 from django.template.defaultfilters import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin
-from braces.views import GroupRequiredMixin 
-
+from aplicacao.views import CustomGroupRequiredMixin
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -31,7 +30,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class PostUpdateView(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+class PostUpdateView(CustomGroupRequiredMixin, LoginRequiredMixin, UpdateView):
     group_required = u"administradores"
     model = Post
     fields = ['titulo', 'conteudo', 'autor', 'categoria']
@@ -54,7 +53,7 @@ class PostUpdateView(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class PostDeleteView(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
+class PostDeleteView(CustomGroupRequiredMixin, LoginRequiredMixin, DeleteView):
     group_required = u"administradores"
     model = Post
     template_name = 'aplicacao/delete.html'
@@ -64,7 +63,7 @@ class PostDeleteView(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
         context = super().get_context_data(*args, **kwargs)
 
         context['iconetitulo'] = '<i class="fa fa-exclamation" aria-hidden="true"></i>'
-        context['titulo'] = "Cadastro de Cliente Pessoa Juridica"
+        context['titulo'] = "Excluir Post"
         context['icon'] = '<i class="fa fa-check" aria-hidden="true"></i>'
         context['botao'] = 'excluir'
 
@@ -79,3 +78,7 @@ class PostDetailView(DetailView):
     model = Post
 
 
+# -------------------- PORTAL --------------------- #
+class PostListagemListView(CustomGroupRequiredMixin, LoginRequiredMixin, ListView):
+    model = Post
+    template_name = 'blog/list-blog.html'
