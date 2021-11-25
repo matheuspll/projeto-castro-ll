@@ -3,6 +3,7 @@ from .views import PostDeleteView, PostListView, PostDetailView, PostCreateView,
 from .views import PostListagemListView
 
 app_name = 'blog'
+
 urlpatterns = [
     path('postagem/blog/', PostListView.as_view(), name='list'),
     path('informativos/<slug:slug>/<int:pk>/', PostDetailView.as_view(), name='detail'),
