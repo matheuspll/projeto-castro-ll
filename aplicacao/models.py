@@ -5,7 +5,6 @@ from django.template.defaultfilters import slugify
 # Create your models here.
 
 
-
 class Pessoa(models.Model):
     comercial = "C"
     fixo = "F"

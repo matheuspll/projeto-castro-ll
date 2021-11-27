@@ -5,7 +5,7 @@ from .models import PessoaFisica, PessoaJuridica, Produto
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import GroupRequiredMixin
-
+from .forms import ContatoForm
 
 # -------------------- mixin customizado --------------------- #
 class CustomGroupRequiredMixin():
@@ -147,7 +147,7 @@ class PessoaFisicaListagemListView(LoginRequiredMixin,ListView):
     template_name = 'aplicacao/list/list-cliente.html'
 
 
-#---------------------- Views Pessoa Juridica ---------------------------
+#---------------------- Views Pessoa Juridica ---------------------------#
 
 class PessoaJuridicaCreate(CreateView):
     model = PessoaJuridica
@@ -205,3 +205,5 @@ class PessoaJuridicaListagemListView(LoginRequiredMixin,ListView):
     model = PessoaJuridica
     template_name = 'aplicacao/list/list-juridico.html'
 
+
+#---------------------- Contato FBV ---------------------------#
