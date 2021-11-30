@@ -1,0 +1,63 @@
+{% extends 'paginas/base.html' %}
+{% load static %}
+
+{% block navbar %}
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}| Lista de Postagem {% endblock title %}
+
+{% block conteudo %}
+<div class="container py-2 my-5 border border-warning">
+    <h3>Lista de postagens registradas</h3>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col text-left">
+                <a href="{% url 'blog:postagem-cadastro' %}" class="btn btn-primary" title="adicionar">Adicionar<i class="fa fa-file"></i> </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container p-3 my-3 ">
+        <div class="table-responsive border">
+            <table class="table table-striped">
+                <tr>
+                    <th>Titulo</th>
+                    <th>autor</th>
+                    <th>categoria</th>
+                    <th>criacao</th>
+                    <th>atualizacao</th>
+                    <th>Opções</th>
+                </tr>
+
+                {% for post in object_list %}
+                <tr>
+                    <td>{{ post.titulo }}</td>
+                    <td>{{ post.autor }}</td>
+                    <td>{{ post.categoria }}</td>
+                    <td>{{ post.criacao }}</td>
+                    <td>{{ post.atualizacao }}</td>
+                    <td>
+                       <a href="{% url 'blog:postagem-atualizar' post.id %}" class="btn btn-warning btn-sm" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+                        <a href="{% url 'blog:postagem-deletar' post.id %}" class="btn btn-danger btn-sm" title="Excluir"><i class="fa fa-trash-o"></i></a>                   
+                    </td>
+                </tr>
+
+                {% empty %}
+                <tr>
+                    <td colspan="3">Nenhuma Postagem registrada!</td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block rodape %}
+{% endblock %}

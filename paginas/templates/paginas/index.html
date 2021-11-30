@@ -232,23 +232,31 @@
                         <p>Entre em contato que retornaremos em até 48 Horas.</p>
                         <p><span class="fa fa-map-marker"></span> Via Chico Mendes, AC</p>
                         <p><span class="fa fa-phone"></span> +00 1515151515</p>
-                        <p><span class="fa fa-envelope-o"></span> myemail@something.com</p>
+                        <p><span class="fa fa-envelope-o"></span> castro.autopecas@gmail.com</p>
                     </div>
                     <div class="col-sm-7 slideanim">
-                        <div class="row">
-                            <div class="col-sm-6 form-group py-1">
-                                <input class="form-control" id="name" name="name" placeholder="Nome" type="text" required>
+                        <!-- Contato form -->
+                        <form action="{% url 'contato' %}" method="post" autocomplete="off">
+                            {% csrf_token %}
+                            <div class="row">                               
+                                <div class="col-sm-6 form-group py-1">
+                                    <input class="form-control" id="name" name="nome" placeholder="Nome" type="text" required>
+                                </div>
+                                <div class="col-sm-6 form-group py-1">
+                                    <input class="form-control" id="email" name="email" placeholder="E-mail" type="email" required>
+                                </div>
+                                <div class="col-sm-6 form-group py-1">
+                                    <input class="form-control" id="assunto" name="assunto" placeholder="Assunto" type="text" required>
+                                </div>                                
                             </div>
-                            <div class="col-sm-6 form-group py-1">
-                                <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                            <textarea class="form-control py-1" id="mensagem" name="mensagem" placeholder="Mensagem" rows="5"></textarea><br>
+                            <div class="row">
+                                <div class="col-sm-12 form-group py-2">
+                                    <button class="btn btn-success pull-right" type="submit">Enviar</button>
+                                </div>
                             </div>
-                        </div>
-                        <textarea class="form-control py-1" id="comments" name="comments" placeholder="Comentario" rows="5"></textarea><br>
-                        <div class="row">
-                            <div class="col-sm-12 form-group py-2">
-                                <button class="btn btn-success pull-right" type="submit">Enviar</button>
-                            </div>
-                        </div>
+                        </form>              
+
                     </div>
                 </div>
             </div>
@@ -270,5 +278,3 @@
     </div>
 </div>
 {% endblock %}
-
-

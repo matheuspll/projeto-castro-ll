@@ -1,4 +1,5 @@
 from django.urls import reverse_lazy
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import PessoaFisica, PessoaJuridica, Produto
@@ -38,11 +39,11 @@ class ProdutoCreateView(CustomGroupRequiredMixin, LoginRequiredMixin, CreateView
         return context
 
 
-# Portal
-class ProdutoListagemListView(LoginRequiredMixin, ListView):
+# -------------------- PORTAL --------------------- #
+class ProdutoListagemListView(CustomGroupRequiredMixin, LoginRequiredMixin, ListView):
     model = Produto
-    template_name = 'aplicacao/list/list-produto.html'
-    
+    template_name = 'aplicacao/list/list-produto.html'    
+
     
 class ProdutoDeleteView(CustomGroupRequiredMixin, LoginRequiredMixin, DeleteView):
     group_required = u"administradores"
@@ -54,7 +55,7 @@ class ProdutoDeleteView(CustomGroupRequiredMixin, LoginRequiredMixin, DeleteView
         context = super().get_context_data(*args, **kwargs)
 
         context['iconetitulo'] = '<i class="fa fa-exclamation" aria-hidden="true"></i>'
-        context['titulo'] = "Cadastro de Cliente Pessoa Juridica"
+        context['titulo'] = "Excluir Produto"
         context['icon'] = '<i class="fa fa-check" aria-hidden="true"></i>'
         context['botao'] = 'excluir'
 
@@ -88,8 +89,6 @@ class ProdutoDetailView(DetailView):
     model = Produto
     
 
-
-
 #-----------------   Views Pessoa Fisica ------------------------#
 
 class PessoaFisicaCreate(CreateView):
@@ -108,7 +107,6 @@ class PessoaFisicaCreate(CreateView):
         context['cadastrar'] ='Cadastrar'
 
         return context
-
 
 
 class PessoaFisicaUpdate(LoginRequiredMixin,GroupRequiredMixin,UpdateView):
@@ -150,7 +148,7 @@ class PessoaFisicaListagemListView(LoginRequiredMixin,ListView):
     template_name = 'aplicacao/list/list-cliente.html'
 
 
-#---------------------- Views Pessoa Juridica ---------------------------
+#---------------------- Views Pessoa Juridica ---------------------------#
 
 class PessoaJuridicaCreate(CreateView):
     model = PessoaJuridica
@@ -202,6 +200,7 @@ class PessoaJuridicaDelete(LoginRequiredMixin,GroupRequiredMixin,DeleteView):
         context['botao'] = 'Excluir'
 
         return context
+
 
 class PessoaJuridicaListagemListView(LoginRequiredMixin,ListView):
     model = PessoaJuridica
