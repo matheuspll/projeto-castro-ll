@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rpsmdz6wwfrbbe9pegv#%u!%xj+%i%g+t*@bn!!0ehzl-okz1!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -159,6 +159,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'mth.email.test@gmail.com'
-EMAIL_HOST_PASSWORD = 'sitecastro2021@Unimeta'
+EMAIL_HOST_USER = '#' # Insira um e-mail -> segurança -> desative o acesso de app menos seguro no e-mail 
+EMAIL_HOST_PASSWORD = '#'  # senha do email
 
